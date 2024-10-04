@@ -5,17 +5,13 @@ import sys
 import webbrowser
 from itertools import cycle
 
-<<<<<<< HEAD
 import magic
-=======
->>>>>>> 1516e20818f4a0c1ef0729bf37f9e12b15024e60
 import pandas as pd
 import plotly.graph_objs as go
 import tabulate
 from art import tprint
 
 
-<<<<<<< HEAD
 def get_file_type(file):
     """
     Определяет тип файла по внутреннему содержимому.
@@ -36,8 +32,6 @@ def get_file_type(file):
         return f'Unknown format: "{file_type}"'
 
 
-=======
->>>>>>> 1516e20818f4a0c1ef0729bf37f9e12b15024e60
 def suffix_ru(number: int) -> str:
     """
     Функция возвращает строку с суффиксом (файл, файла, файлов) в зависимости от
@@ -59,7 +53,6 @@ def suffix_ru(number: int) -> str:
 
 def excel_file_to_df(file):
     """
-<<<<<<< HEAD
     Функция читает переданный файл(с полным путем), преобразует данные в формате Excel
     из ПО PRIMA (множественные графики)в Pandas DataFrame, возвращает DataFrame.
     Args:
@@ -76,8 +69,6 @@ def excel_file_to_df(file):
 
 def txt_file_to_df(file):
     """
-=======
->>>>>>> 1516e20818f4a0c1ef0729bf37f9e12b15024e60
     Функция читает переданный файл(с полным путем), преобразует данные из ПО PRIMA в 
     Pandas DataFrame, возвращает DataFrame.
     Args:
@@ -286,13 +277,8 @@ def main(files):
         print(f'[+] Таблица создана\n\n Таблица файла: {filename}')
         print(
             tabulate.tabulate(
-<<<<<<< HEAD
                 add_table(data_df),
                 headers=list(add_table(data_df).columns),
-=======
-                add_table(data_df, filename),
-                headers=list(add_table(data_df, filename).columns),
->>>>>>> 1516e20818f4a0c1ef0729bf37f9e12b15024e60
                 showindex=False, tablefmt="grid", stralign='left', numalign="left"
             ),
             end='\n\n'
