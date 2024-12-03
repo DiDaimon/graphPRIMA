@@ -136,7 +136,7 @@ def add_table(df: pd.DataFrame):
     table['Наименование'] = ['Максимальное значение', 'Минимальное значение', 'Среднее значение',
                              'Медианное значение', 'Стандартное отклонение']
     for column in df.columns:
-        if any([True for i in ['Freq', 'Fmea', 'Fнаст.(МГц)', 'Fизм.(МГц)'] if i in column]):
+        if any([True for i in ['Freq', 'Fmea', 'Fнаст', 'Fизм'] if i in column]):
             continue
         table[column] = [df[column].max(), df[column].min(), df[column].mean(),
                          df[column].median(), df[column].std()]
@@ -175,7 +175,7 @@ def add_graph(df, name):
     """
     # добавляем график и его имя
     for column in df.columns:
-        if any([True for i in ['Freq', 'Fmea', 'Fнаст.(МГц)', 'Fизм.(МГц)'] if i in column]):
+        if any([True for i in ['Freq', 'Fmea', 'Fнаст', 'Fизм'] if i in column]):
             continue
         GRAPH.add_trace(
             go.Scatter(
