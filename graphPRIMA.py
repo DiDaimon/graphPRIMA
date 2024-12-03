@@ -63,7 +63,7 @@ def excel_file_to_df(file):
     """
     df_temp = pd.read_excel(file)
     df_temp = df_temp.drop(df_temp[df_temp[df_temp.columns[0]] == 0].index)
-    df_temp.rename(columns={df_temp.columns[0]: 'Freq'}, inplace=True)
+    df_temp.rename(columns={df_temp.columns[0]: 'Fнаст.(МГц)'}, inplace=True)
     return df_temp
 
 
@@ -81,7 +81,7 @@ def txt_file_to_df(file):
     # Прочитаем файл и найдем строку со столбцами и выясним сколько строк надо пропустить
     with open(file, 'r', encoding='cp1251') as f:
         for idx, line in enumerate(f.readlines()):
-            if 'Freq' in line:
+            if 'Freq' in line or 'Fнаст.(МГц)' in line:
                 columns_names = line
                 # Ну тут понятно индекс с 0 начинается поэтому кол. +1.
                 skiprows = idx + 1
@@ -136,7 +136,7 @@ def add_table(df: pd.DataFrame):
     table['Наименование'] = ['Максимальное значение', 'Минимальное значение', 'Среднее значение',
                              'Медианное значение', 'Стандартное отклонение']
     for column in df.columns:
-        if 'Freq' in column or 'Fmea' in column:
+        if any([True for i in ['Freq', 'Fmea', 'Fнаст.(МГц)', 'Fизм.(МГц)'] if i in column]):
             continue
         table[column] = [df[column].max(), df[column].min(), df[column].mean(),
                          df[column].median(), df[column].std()]
@@ -175,7 +175,7 @@ def add_graph(df, name):
     """
     # добавляем график и его имя
     for column in df.columns:
-        if 'Freq' in column or 'Fmea' in column:
+        if any([True for i in ['Freq', 'Fmea', 'Fнаст.(МГц)', 'Fизм.(МГц)'] if i in column]):
             continue
         GRAPH.add_trace(
             go.Scatter(
